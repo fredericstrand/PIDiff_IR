@@ -18,7 +18,9 @@ conda env create --file=environment.yaml
 
 Download KAIST dataset from https://github.com/SoonminHwang/rgbt-ped-detection.
 
-Download FLIR dataset from https://www.flir.com/oem/adas/adas-dataset-form/.
+Download FLIRv1 dataset from https://www.flir.com/oem/adas/adas-dataset-form/.
+
+We adopt the official dataset split in our experiments.
 
 ## Checkpoint
 
@@ -29,6 +31,7 @@ VQGAN can be downloaded from https://github.com/CompVis/latent-diffusion.
 | TeVNet | TeVNet checkpoint for KAIST, epoch=0.95k | [TeVNet_KAIST.zip](https://1drv.ms/u/s!AiBcDdKjVk0ubr49dgvt-R5s6jM?e=7hpRLS) |
 | TeVNet |   TeVNet checkpoint for FLIR, epoch=1k   | [TeVNet_FLIR.zip](https://1drv.ms/u/s!AiBcDdKjVk0ubV_nT3EIDnzJ10Y?e=bQeXc4) |
 |  PID   |  PID checkpoint for KAIST, k1=50, k2=5   | [PID_KAIST.zip](https://1drv.ms/u/s!AiBcDdKjVk0ub0BI3aQGHxxQf-g?e=6LlzBE) |
+|  PID   |  PID checkpoint for KAIST, k1=50, k2=5, resume   | [PID_KAIST_resume.zip](https://1drv.ms/u/c/2e4d56a3d20d5c20/EbqLPzlm4JNBosiswq7uEf4BG-ea-XW-0ERQGM6drM5YHQ?e=ifrEBb) |
 |  PID   |    PID checkpoint for FLIR, k1=k2=50     | [PID_FLIR.zip](https://1drv.ms/u/s!AiBcDdKjVk0ucJF2M7FwuVhJoiU?e=Hfm2B9) |
 
 ## Evaluation
