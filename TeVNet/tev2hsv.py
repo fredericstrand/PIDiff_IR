@@ -52,6 +52,7 @@ def save_decomposed_images(preds, input_tensor, output_img_dir, img_name, lossmo
     e = lossmodule.rec_e(preds).mul(255.0).cpu().numpy().squeeze(0).squeeze(0)
     T = lossmodule.rec_T(preds).mul(255.0).cpu().numpy().squeeze(0).squeeze(0)
     env = lossmodule.rec_env(preds, torch.mean(input_tensor, dim=1)).mul(255.0).cpu().numpy().squeeze(0).squeeze(0)
+    T = cv2.normalize(T, None, alpha=0, beta=255, norm_type=cv2.NORM_MINMAX, dtype=cv2.CV_8U)
     env = cv2.normalize(env, None, alpha=0, beta=255, norm_type=cv2.NORM_MINMAX, dtype=cv2.CV_8U)
 
     save_image(np.transpose(input_tensor.cpu().numpy().squeeze(0), (1, 2, 0)) * 255, os.path.join(output_img_dir, f'{img_name}_ori.png'))
@@ -67,8 +68,6 @@ def save_decomposed_images(preds, input_tensor, output_img_dir, img_name, lossmo
     
     e = (e - np.mean(e)) / np.std(e) # normalization for better visualization
     e = cv2.normalize(e, None, alpha=0, beta=360, norm_type=cv2.NORM_MINMAX, dtype=cv2.CV_8U) #  H is between [0,360] in HSV space
-    T = cv2.normalize(T, None, alpha=0, beta=255, norm_type=cv2.NORM_MINMAX, dtype=cv2.CV_8U) # S is between [0,255] in HSV space
-    env = cv2.normalize(env, None, alpha=0, beta=255, norm_type=cv2.NORM_MINMAX, dtype=cv2.CV_8U) # V is between [0,255] in HSV space
     
     e = np.expand_dims(e, axis=2)
     T = np.expand_dims(T, axis=2)
