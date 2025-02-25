@@ -48,17 +48,19 @@ def process_image(image_path, device):
 def save_decomposed_images(preds, input_tensor, output_img_dir, img_name, lossmodule):
     """Saves decomposed images from model predictions."""
     preds_np = preds.cpu().numpy().squeeze(0)
-    rec = lossmodule.rec(preds, input_tensor).mul(255.0).cpu().numpy().squeeze(0)
-    e = lossmodule.rec_e(preds).mul(255.0).cpu().numpy().squeeze(0)
-    T = lossmodule.rec_T(preds).mul(255.0).cpu().numpy().squeeze(0)
-    env = lossmodule.rec_env(preds, torch.mean(input_tensor, dim=1)).mul(255.0).cpu().numpy().squeeze(0)
+    rec = lossmodule.rec(preds, input_tensor).mul(255.0).cpu().numpy().squeeze(0).squeeze(0)
+    e = lossmodule.rec_e(preds).mul(255.0).cpu().numpy().squeeze(0).squeeze(0)
+    T = lossmodule.rec_T(preds).mul(255.0).cpu().numpy().squeeze(0).squeeze(0)
+    env = lossmodule.rec_env(preds, torch.mean(input_tensor, dim=1)).mul(255.0).cpu().numpy().squeeze(0).squeeze(0)
+    
+    T = cv2.normalize(T, None, alpha=0, beta=255, norm_type=cv2.NORM_MINMAX, dtype=cv2.CV_8U)
     env = cv2.normalize(env, None, alpha=0, beta=255, norm_type=cv2.NORM_MINMAX, dtype=cv2.CV_8U)
 
     save_image(np.transpose(input_tensor.cpu().numpy().squeeze(0), (1, 2, 0)) * 255, os.path.join(output_img_dir, f'{img_name}_ori.png'))
-    save_image(rec[0], os.path.join(output_img_dir, f'{img_name}_rec.png'))
-    save_image(T[0], os.path.join(output_img_dir, f'{img_name}_T.png'))
-    save_image(e[0], os.path.join(output_img_dir, f'{img_name}_e.png'))
-    save_image(env[0], os.path.join(output_img_dir, f'{img_name}_env.png'))
+    save_image(rec, os.path.join(output_img_dir, f'{img_name}_rec.png'))
+    save_image(T, os.path.join(output_img_dir, f'{img_name}_T.png'))
+    save_image(e, os.path.join(output_img_dir, f'{img_name}_e.png'))
+    save_image(env, os.path.join(output_img_dir, f'{img_name}_env.png'))
 
     # Save each V component
     for i in range(2, 6):  # Assuming 4 V components
