@@ -62,8 +62,8 @@ def save_decomposed_images(preds, input_tensor, output_img_dir, img_name, lossmo
     for i in range(2, 6):  # Assuming 4 V components
         save_image(preds_np[i] * 255, os.path.join(output_img_dir, f'{img_name}_V{i-1}.png'))
     
-    e = e / 255 * 360 # H is between [0,360] in HSV space
     e = (e - np.mean(e)) / np.std(e) # normalization for better visualization
+    e = cv2.normalize(e, None, alpha=0, beta=360, norm_type=cv2.NORM_MINMAX, dtype=cv2.CV_8U) #  H is between [0,360] in HSV space
     T = cv2.normalize(T, None, alpha=0, beta=255, norm_type=cv2.NORM_MINMAX, dtype=cv2.CV_8U) # S is between [0,255] in HSV space
     env = cv2.normalize(env, None, alpha=0, beta=255, norm_type=cv2.NORM_MINMAX, dtype=cv2.CV_8U) # V is between [0,255] in HSV space
     
