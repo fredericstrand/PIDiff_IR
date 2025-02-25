@@ -24,7 +24,7 @@ We adopt the official dataset split in our experiments.
 
 ## Checkpoint
 
-VQGAN can be downloaded from https://github.com/CompVis/latent-diffusion.
+VQGAN can be downloaded from https://ommer-lab.com/files/latent-diffusion/vq-f8.zip (Other GAN models can be downloaded from https://github.com/CompVis/latent-diffusion).
 
 |  Name  |                   Note                   |                             Link                             |
 | :----: | :--------------------------------------: | :----------------------------------------------------------: |
