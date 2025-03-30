@@ -34,9 +34,13 @@ if __name__ == "__main__":
     idx = 0
     
     for rname, fname in tqdm(zip(real_names, fake_names)):
-        
-        real_img = np.array(Image.open(rname).convert('L').resize((args.size, args.size)))
+        real_image = Image.open(rname).convert('L')
+        crop = min(real_image.size[0], real_image.size[1])
+        h, w = real_image.size[1], real_image.size[0]
+        real_image = real_image.crop(((w - crop) // 2, (h - crop) // 2, (w + crop) // 2, (h + crop) // 2))
+        real_img = np.array(real_image.resize((args.size, args.size)))
         fake_img = np.array(Image.open(fname).convert('L').resize((args.size, args.size)))
+        
         psnr = Metrics.calculate_psnr(fake_img, real_img)
         ssim = Metrics.calculate_ssim(fake_img, real_img)
         lpips = Metrics.calculate_lpips(fake_img, real_img, lpips_model)
