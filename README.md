@@ -4,7 +4,7 @@
 
 ## Paper
 
-The paper is under review: https://arxiv.org/abs/2407.09299
+The paper is accepted by Pattern Recognition: https://doi.org/10.1016/j.patcog.2025.111816
 
 ## Environment
 
@@ -72,11 +72,14 @@ Our code is built upon [LDM](https://github.com/CompVis/latent-diffusion) and [H
 If you find this work helpful in your research, please consider citing our paper:
 
 ```
-@inproceedings{Mao2024PIDPD,
-  title={PID: Physics-Informed Diffusion Model for Infrared Image Generation},
-  author={Fangyuan Mao and Jilin Mei and Shun Lu and Fuyang Liu and Liang Chen and Fangzhou Zhao and Yu Hu},
-  year={2024},
-  url={https://doi.org/10.48550/arXiv.2407.09299}
+@article{mao2026pid,
+  title={PID: physics-informed diffusion model for infrared image generation},
+  author={Mao, Fangyuan and Mei, Jilin and Lu, Shun and Liu, Fuyang and Chen, Liang and Zhao, Fangzhou and Hu, Yu},
+  journal={Pattern Recognition},
+  volume={169},
+  pages={111816},
+  year={2026},
+  publisher={Elsevier}
 }
 ```
 
