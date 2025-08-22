@@ -529,6 +529,7 @@ class LatentDiffusion(DDPM):
             
     def instantiate_tevnet_stage(self, config):
         model = instantiate_from_config(config)
+        
         self.tevnet_stage_model = model.eval()
         self.tevnet_stage_model.train = disabled_train
         for param in self.tevnet_stage_model.parameters():
@@ -730,7 +731,6 @@ class LatentDiffusion(DDPM):
             out.append(xc)
         return out
 
-    @torch.no_grad()
     def decode_first_stage(self, z, predict_cids=False, force_not_quantize=False):
         if predict_cids:
             if z.dim() == 4:
@@ -1037,7 +1037,6 @@ class LatentDiffusion(DDPM):
         kl_prior = normal_kl(mean1=qt_mean, logvar1=qt_log_variance, mean2=0.0, logvar2=0.0)
         return mean_flat(kl_prior) / np.log(2.0)
 
-    @torch.no_grad()
     def tev_net(self, x):
         preds = self.tevnet_stage_model(x)
         return preds
