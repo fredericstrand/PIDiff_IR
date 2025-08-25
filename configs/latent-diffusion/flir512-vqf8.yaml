@@ -3,8 +3,8 @@ model:
   target: ldm.models.diffusion.ddpm_tev.LatentDiffusion
   params:
     load_only_unet: True
-    tevloss_weight_rec: 50 # set 0 at early satge
-    tevloss_weight_tev: 50 # set 0 at early satge
+    tevloss_weight_rec: 0 # set 0 at early satge
+    tevloss_weight_tev: 0 # set 0 at early satge
     pixel_tev: true
     vnums: 4
     linear_start: 0.0015
