@@ -3,8 +3,8 @@ model:
   target: ldm.models.diffusion.ddpm_tev.LatentDiffusion
   params:
     load_only_unet: True
-    tevloss_weight_rec: 50
-    tevloss_weight_tev: 50
+    tevloss_weight_rec: 50 # set 0 at early satge
+    tevloss_weight_tev: 50 # set 0 at early satge
     pixel_tev: true
     vnums: 4
     linear_start: 0.0015
@@ -61,13 +61,14 @@ model:
           dropout: 0
         lossconfig:
           target: torch.nn.Identity
-    cond_stage_config:
-      target: ldm.modules.encoders.modules.SpatialRescaler
-      params:
-        n_stages: 3
-        method: bicubic
-        in_channels: 3
-        out_channels: 3
+    cond_stage_config: "__is_first_stage__"
+    # cond_stage_config:
+    #   target: ldm.modules.encoders.modules.SpatialRescaler
+    #   params:
+    #     n_stages: 3
+    #     method: bicubic
+    #     in_channels: 3
+    #     out_channels: 3
     tev_net_config: 
       target: ldm.modules.HADARNet.modules.HADARNet
       params:
