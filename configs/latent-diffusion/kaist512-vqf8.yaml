@@ -61,13 +61,14 @@ model:
           dropout: 0
         lossconfig:
           target: torch.nn.Identity
-    cond_stage_config:
-      target: ldm.modules.encoders.modules.SpatialRescaler
-      params:
-        n_stages: 3
-        method: bicubic
-        in_channels: 3
-        out_channels: 3
+    cond_stage_config: "__is_first_stage__"
+    # cond_stage_config:
+    #   target: ldm.modules.encoders.modules.SpatialRescaler
+    #   params:
+    #     n_stages: 3
+    #     method: bicubic
+    #     in_channels: 3
+    #     out_channels: 3
     tev_net_config: 
       target: ldm.modules.HADARNet.modules.HADARNet
       params:
