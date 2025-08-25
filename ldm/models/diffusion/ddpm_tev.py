@@ -1096,8 +1096,8 @@ class LatentDiffusion(DDPM):
             loss_tev += self.tevloss_weight_rec * self.get_loss_rec(x0_hat).mean([1, 2, 3])
         if self.tevloss_weight_tev != 0:
             loss_tev += self.tevloss_weight_tev * self.get_loss_tev(x0_hat, x_start).mean([1, 2, 3])
-        # else:
-        #     loss_tev = torch.tensor(loss_tev)
+        if self.tevloss_weight_rec == 0 and self.tevloss_weight_tev == 0:
+            loss_tev = torch.tensor(loss_tev)
         t = t.to('cpu')
         
         logvar_t = self.logvar[t].to(self.device)
@@ -1112,7 +1112,7 @@ class LatentDiffusion(DDPM):
         loss_vlb = (self.lvlb_weights[t] * loss_vlb).mean()
         loss_dict.update({f'{prefix}/loss_vlb': loss_vlb})
         loss += (self.original_elbo_weight * loss_vlb)
-        # print()
+        
         loss_tev = torch.clamp(loss_tev, min=0.0, max=1.0)
         loss_dict.update({f'{prefix}/loss_tev':loss_tev.mean()})
         loss += (loss_tev.mean())
