@@ -91,7 +91,10 @@ if __name__ == "__main__":
                 batch = make_batch(visible, device=device)
 
                 c = model.cond_stage_model.encode(batch["conditional"])
-                shape = (c.shape[1]+1,)+c.shape[2:]
+                if c.shape[1] == 4:
+                    shape = (c.shape[1],)+c.shape[2:]
+                else:
+                    shape = (c.shape[1]+1,)+c.shape[2:]
                 samples_ddim, _ = sampler.sample(S=opt.steps,
                                                  conditioning=c,
                                                  batch_size=c.shape[0],

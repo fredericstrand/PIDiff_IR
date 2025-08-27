@@ -2,13 +2,14 @@
 
 <img src="PID.png" alt="PID" style="zoom:50%;" />
 
-## Paper
+## Update 
 
-The paper is accepted by Pattern Recognition: https://doi.org/10.1016/j.patcog.2025.111816
+* 2025/05 The paper is accepted by Pattern Recognition: https://doi.org/10.1016/j.patcog.2025.111816
+* We have released our code.
 
 ## Environment
 
-We recommend you to install the environment with environment.yaml. 
+It is recommended to install the environment with environment.yaml. 
 
 ```bash
 conda env create --file=environment.yaml
@@ -16,9 +17,9 @@ conda env create --file=environment.yaml
 
 ## Datasets
 
-Download KAIST dataset from https://github.com/SoonminHwang/rgbt-ped-detection.
+Download **KAIST** dataset from https://github.com/SoonminHwang/rgbt-ped-detection
 
-Download FLIRv1 dataset from https://www.flir.com/oem/adas/adas-dataset-form/.
+Download **FLIRv1** dataset from https://www.flir.com/oem/adas/adas-dataset-form/
 
 We adopt the official dataset split in our experiments.
 
@@ -26,13 +27,7 @@ We adopt the official dataset split in our experiments.
 
 VQGAN can be downloaded from https://ommer-lab.com/files/latent-diffusion/vq-f8.zip (Other GAN models can be downloaded from https://github.com/CompVis/latent-diffusion).
 
-|  Name  |                   Note                   |                             Link                             |
-| :----: | :--------------------------------------: | :----------------------------------------------------------: |
-| TeVNet | TeVNet checkpoint for KAIST, epoch=0.95k | [TeVNet_KAIST.zip](https://1drv.ms/u/s!AiBcDdKjVk0ubr49dgvt-R5s6jM?e=7hpRLS) |
-| TeVNet |   TeVNet checkpoint for FLIR, epoch=1k   | [TeVNet_FLIR.zip](https://1drv.ms/u/s!AiBcDdKjVk0ubV_nT3EIDnzJ10Y?e=bQeXc4) |
-|  PID   |  PID checkpoint for KAIST, k1=50, k2=5   | [PID_KAIST.zip](https://1drv.ms/u/s!AiBcDdKjVk0ub0BI3aQGHxxQf-g?e=6LlzBE) |
-|  PID   |  PID checkpoint for KAIST, k1=50, k2=5, resume   | [PID_KAIST_resume.zip](https://1drv.ms/u/c/2e4d56a3d20d5c20/EbqLPzlm4JNBosiswq7uEf4BG-ea-XW-0ERQGM6drM5YHQ?e=ifrEBb) |
-|  PID   |    PID checkpoint for FLIR, k1=k2=50     | [PID_FLIR.zip](https://1drv.ms/u/s!AiBcDdKjVk0ucJF2M7FwuVhJoiU?e=Hfm2B9) |
+TeVNet and PID heckpoints can be found in [HuggingFace](https://huggingface.co/FerrisMao/PID).
 
 ## Evaluation
 
@@ -57,7 +52,7 @@ bash shell/train.sh
 
 ### Stage 2: Train PID
 
-Use the shellscript to train. It is recommended to use our pretrained model to accelerate the train process.
+To accelerate training, we recommend using our pretrained model. 
 
 ```bash
 bash shell/run_train_kaist512_vqf8.sh
@@ -69,7 +64,7 @@ Our code is built upon [LDM](https://github.com/CompVis/latent-diffusion) and [H
 
 ## Citation
 
-If you find this work helpful in your research, please consider citing our paper:
+If you find this work is helpful in your research, please consider citing our paper:
 
 ```
 @article{mao2026pid,
@@ -83,4 +78,4 @@ If you find this work helpful in your research, please consider citing our paper
 }
 ```
 
-If you have any question, feel free to contact maofangyuan23s@ict.ac.cn .
+If you have any question, feel free to contact maofangyuan23s@ict.ac.cn.

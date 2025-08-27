@@ -174,7 +174,6 @@ dependencies:
       - scikit-image==0.16.2
       - scipy==1.9.3
       - segmentation-models-pytorch==0.3.3
-      - taming-transformers==0.0.1
       - tensorboard==2.2.0
       - tensorboard-plugin-wit==1.8.1
       - tensorboardx==2.6.2.2
