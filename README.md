@@ -21,6 +21,8 @@ Download **KAIST** dataset from https://github.com/SoonminHwang/rgbt-ped-detecti
 
 Download **FLIRv1** dataset from https://www.flir.com/oem/adas/adas-dataset-form/
 
+Download **VEDAI** dataset from https://downloads.greyc.fr/vedai/
+
 We adopt the official dataset split in our experiments.
 
 ## Checkpoint
